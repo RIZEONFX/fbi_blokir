@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TERBLOKIR</title>
+  <style>
+    html, body {
+      margin: 0 auto;
+      height: 100%;
+      width: 100%;
+    }
+    html {
+      font-size: 14.7px;
+    }
+    body {
+      background-color: #121212;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    h1 {
+      font-weight: 900;
+      margin: 0;
+      color: orange;
+    }
+    p {
+      text-align: center;
+      color: white;
+    }
+    img {
+      width: 12rem;
+      height: 12rem;
+      margin: 2rem;   
+      border-radius: 0.5rem;
+      box-shadow: 0px 0px 1px yellow, 0px 0px 0px 2.5px orange, 4px 4px 7.5px orange, -4px -4px 7.5px orange;
+    }
+    span {
+      color: orange;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SITUS DI BLOKIR</h1>
+     <img src="fbi_cat.jpg" alt="FBI_CAT">
+    <p>AKSES KE SITUS INI DI BATASI KARENA ALASAN KEAMANAN ATAU KEBIJAKAN <span>FBI</span></p>
+  </div>
+  <script>
+    let body = document.body;
+    let properBody = body.getBoundingClientRect();
+    console.log(`width: ${properBody.width}px and height: ${properBody.height}px`);
+  </script>
+</body>
+</html>
