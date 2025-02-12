@@ -37,7 +37,7 @@
       text-align: center;
       color: white;
     }
-    img {
+    .cat {
       width: 12rem;
       height: 12rem;
       margin: 2rem;   
@@ -48,18 +48,84 @@
       color: orange;
       font-weight: 700;
     }
+    header {   
+      top: 0;
+    }
+    footer {
+      bottom: 0;
+    }
+    .contLine {
+      position: fixed;
+      width: 100%;
+      height: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      background-color: #121212;
+      overflow: hidden;
+    }
+    .line {
+      min-width: 10px;
+      height: 100%;    
+      background-color: orange;
+      transform: skew(-45deg);
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <header class="contLine">
+    
+  </header>
+  <main class="container">
     <h1>SITUS DI BLOKIR</h1>
-     <img src="fbi_cat.jpg" alt="FBI_CAT">
+     <img class="cat" src="fbi_cat.jpg" alt="FBI_CAT">
     <p>AKSES KE SITUS INI DI BATASI KARENA ALASAN KEAMANAN ATAU KEBIJAKAN <span>FBI</span></p>
-  </div>
+  </main>
+  <footer class="contLine">
+    
+  </footer>
   <script>
-    let body = document.body;
-    let properBody = body.getBoundingClientRect();
-    console.log(`width: ${properBody.width}px and height: ${properBody.height}px`);
+    //mendapatkan total div yang di perlukan
+    function getTotalEl(){
+      let body = document.body;
+      let properBody = body.getBoundingClientRect();
+ //     console.log(`width: ${properBody.width}px and height: ${properBody.height}px`);
+  
+      let getTotalDiv = Math.floor(properBody.width / 20) + 2;
+ //     console.log(getTotalDiv);
+      return getTotalDiv;
+    }
+  
+    let parentsLine = document.querySelectorAll(".contLine");
+    
+    //membuat div baru
+    function createItems(){
+     let elements = [];
+     let total = getTotalEl();
+       for(let i = 0; i < total; i++){       
+         let createDiv = document.createElement("div");
+         createDiv.classList.add("line");
+         elements.push(createDiv)
+       }
+     return elements;
+    }
+    
+    //menambahkan div pada awal halaman di tampilkan
+    parentsLine.forEach(parent => {
+      parent.replaceChildren(...createItems());
+    })
+  
+  //mengganti div jika lebar halaman berubah
+  let resizeTimeout;
+   window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      parentsLine.forEach(parent => {
+         parent.replaceChildren(...createItems());
+      })
+    }, 200) //debounce
+   })
+  
   </script>
 </body>
 </html>
